@@ -1,0 +1,17 @@
+# IntelliJ
+.idea/
+*.iml
+out/
+
+# Gradle
+.gradle/
+build/
+
+# Ejecutables de C: solo se suben los fuentes y el Makefile
+c/*
+!c/*.c
+!c/Makefile
+
+# Logs y salidas de pruebas
+*.log
+*.csv

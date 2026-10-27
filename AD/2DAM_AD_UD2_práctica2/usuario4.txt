@@ -1,0 +1,6 @@
+DNI: 8888
+Nombre: jon
+Apellido: perez
+Fecha de Nacimiento: 2002
+Número de telefono: 888888
+

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Limonada</string>
+    <string name="lemon_tree">Toca el limonero</string>
+    <string name="lemon_tree_content_description">Pulsa el limon</string>
+    <string name="lemon">limon</string>
+    <string name="lemon_content_description">Pulsa el limon x veces para exprimirlo</string>
+</resources>

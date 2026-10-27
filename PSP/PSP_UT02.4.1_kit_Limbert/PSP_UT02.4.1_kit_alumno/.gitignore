@@ -1,0 +1,7 @@
+# Se generan al compilar o al abrir el proyecto: no se entregan
+build/
+.gradle/
+.kotlin/
+.idea/
+*.iml
+out/

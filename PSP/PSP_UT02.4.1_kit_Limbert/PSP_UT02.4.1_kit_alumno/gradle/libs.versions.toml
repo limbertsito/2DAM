@@ -1,0 +1,11 @@
+# libs.versions.toml · Versiones del proyecto en un solo sitio
+[versions]
+kotlin = "2.4.20"
+coroutines = "1.11.0"
+
+[libraries.coroutines]
+module = "org.jetbrains.kotlinx:kotlinx-coroutines-core"
+version.ref = "coroutines"
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
