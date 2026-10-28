@@ -4,4 +4,8 @@
     <string name="lemon_tree_content_description">Pulsa el limon</string>
     <string name="lemon">limon</string>
     <string name="lemon_content_description">Pulsa el limon x veces para exprimirlo</string>
+    <string name="glass_of_lemonade">Toca la limonada para beber</string>
+    <string name="glass_of_lemonade_content_description">Pulsa la limonada</string>
+    <string name="empty_glass">Toca la el vaso vacio</string>
+    <string name="empty_glass_content_description">Pulsa el vaso vacio</string>
 </resources>

@@ -8,9 +8,11 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -30,9 +32,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import vb.progra.limonada.ui.theme.LimonadaTheme
 
 class MainActivity : ComponentActivity() {
@@ -44,10 +48,6 @@ class MainActivity : ComponentActivity() {
             HomeScreen()
         }
     }
-}
-
-fun textoImagenLimonada(): Int {
-    TODO("Not yet implemented")
 }
 
 @Composable
@@ -75,6 +75,7 @@ fun HomeScreen() {
                 )
                 2 -> textoImagenLimonada(
                     onImageClick ={
+                        //Reducimos el contador de exprimido
                         contador--
                         if(contador==0){
                             estadoActual=3
@@ -84,7 +85,22 @@ fun HomeScreen() {
                     drawableResourceId = R.drawable.lemon_squeeze,
                     contentDescriptionResourceId = R.string.lemon_content_description
 
-
+                )
+                3 -> textoImagenLimonada(
+                    onImageClick = {
+                        estadoActual=4
+                    },
+                    textLabelResourceId = R.string.glass_of_lemonade,
+                    drawableResourceId = R.drawable.lemon_drink,
+                    contentDescriptionResourceId = R.string.glass_of_lemonade_content_description
+                )
+                4 -> textoImagenLimonada(
+                    onImageClick = {
+                        estadoActual=1
+                    },
+                    textLabelResourceId = R.string.empty_glass,
+                    drawableResourceId = R.drawable.lemon_restart,
+                    contentDescriptionResourceId = R.string.empty_glass_content_description
                 )
             }
         }
@@ -126,8 +142,15 @@ fun textoImagenLimonada(onImageClick: () -> Unit = {}
 
             Image(
                 painter = painterResource(drawableResourceId),
-                contentDescription = null
+                contentDescription = stringResource(contentDescriptionResourceId),
+                modifier = Modifier.clickable{onImageClick()}
 
+            )
+            Spacer(modifier = Modifier.padding(16.dp))
+            Text(
+                text = stringResource(textLabelResourceId),
+                style = MaterialTheme.typography.bodyLarge,
+                fontSize = 18.sp,
             )
         }
 
