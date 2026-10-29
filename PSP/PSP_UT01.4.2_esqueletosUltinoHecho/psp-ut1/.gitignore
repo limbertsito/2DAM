@@ -1,0 +1,13 @@
+# IntelliJ
+.idea/
+*.iml
+out/
+
+# Gradle y Kotlin
+.gradle/
+.kotlin/
+build/
+
+# Salidas de los programas
+salidas/
+*.log
