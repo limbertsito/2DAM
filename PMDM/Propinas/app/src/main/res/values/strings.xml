@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Propinas</string>
+    <string name="calculate_tip">Calculadora de propinas</string>
+    <string name="bill_amount">Precio</string>
+    <string name="tip_amount">Propina: %s</string>
+</resources>
+
+
+
