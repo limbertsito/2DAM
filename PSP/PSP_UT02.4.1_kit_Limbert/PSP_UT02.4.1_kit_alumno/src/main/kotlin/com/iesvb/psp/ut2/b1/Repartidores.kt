@@ -41,13 +41,24 @@ fun main() {
 
         //y lo añdimos al array de repartdiores
         repartidores.add(repartidor)
-        var h = Thread{repartidor,"repartidor$i"}
-        hilos.add(Thread(repartidores[i], "repartidor$i"))
 
+        val hilo = Thread(repartidor, "repartidor$i")
+        hilos.add(hilo)
+
+        //Lo arranccamos
+        hilo.start()
     }
     // Espera a que terminen todos los hilos (join)
     // Suma las entregas hechas por cada repartidor y escribe el total con log
+    for(hilo in hilos){
+        hilo.join()
 
+    }
+    var totalEntregas=0
+    for (r in repartidores){
+        totalEntregas+=r.hechas
+    }
+    log("El total de entregas es $totalEntregas")
 
 
 
