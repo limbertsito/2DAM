@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Mensaje</string>
+    <string name="enviar_mensaje">Enviar mensaje</string>
+    <string name="mensaje">Mensaje</string>
+</resources>

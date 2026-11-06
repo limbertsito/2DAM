@@ -38,7 +38,7 @@ import java.io.FileOutputStream
 @SdkSuppress(minSdkVersion = Build.VERSION_CODES.O)
 fun assertScreenshotMatchesGolden(
     goldenName: String,
-    node: SemanticsNodeInteraction
+    node: SemanticsNodeInteraction,
 ) {
     val bitmap = node.captureToImage().asAndroidBitmap()
 
