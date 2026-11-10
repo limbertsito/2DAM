@@ -1,42 +1,23 @@
 package com.example.compose.rally
 
-import androidx.compose.material.Text
-import androidx.compose.ui.test.junit4.v2.createAndroidComposeRule
+import androidx.compose.ui.test.assertIsSelected
+import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
-import androidx.compose.ui.test.onNodeWithText
 import com.example.compose.rally.ui.components.RallyTopAppBar
 import org.junit.Rule
 import org.junit.Test
 
 class TopAppBarTest {
 
+    // Regla correcta para testear un componente aislado (sin lanzar MainActivity)
     @get:Rule
-    val composeTestRule = createAndroidComposeRule(RallyActivity::class.java)
+    val composeTestRule = createComposeRule()
 
     @Test
-    fun myTest() {
-        composeTestRule.setContent {
-            Text("You can set any Compose content!")
-        }
-    }
+    fun rallyTopAppBarTest_currentTabSelected() {
+        val allScreens = RallyScreen.values().toList()
 
-    @Test
-    fun rallyTopAppBarTest() {
-        composeTestRule.setContent {
-            RallyTopAppBar(
-                allScreens = RallyScreen.entries,
-                onTabSelected = { },
-                currentScreen = RallyScreen.Accounts
-            )
-        }
-        composeTestRule
-            .onNodeWithText(RallyScreen.Accounts.name.uppercase(), useUnmergedTree = true)
-            .assertExists()
-    }
-
-    @Test
-    fun rallyTopAppBarTest_currentLabelExists() {
-        val allScreens = RallyScreen.entries
+        // 1. Configuramos el componente (aislado) en la UI
         composeTestRule.setContent {
             RallyTopAppBar(
                 allScreens = allScreens,
@@ -45,8 +26,9 @@ class TopAppBarTest {
             )
         }
 
+        // 2. Buscamos el nodo y verificamos que el sistema dice que está seleccionado
         composeTestRule
             .onNodeWithContentDescription(RallyScreen.Accounts.name)
-            .assertExists()
+            .assertIsSelected()
     }
 }
