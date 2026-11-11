@@ -9,9 +9,23 @@ fun main() {
 // entregas que lleva el repartidor
     val repartidor = thread(name = "repartidor") {
 // Dentro de un try { … } catch (e: InterruptedException) { … }:
-// con log.
-//
-// duerme.
+// con log. duerme.
+        try{
+            for (i in 1..10) {
+                Thread.sleep(300)
+                hechas++
+                log("Entrega: $hechas")
+            }
+            log("Has terminado todas")
+        }catch(e: InterruptedException){
+            log("Interrupted!")
+
+        }
+        val listaHijos = encontrado.get().children().toList()
+        for (hijo in listaHijos) {
+            lineas.add(describir(hijo))
+        }
+
     }
 //
 // try:
