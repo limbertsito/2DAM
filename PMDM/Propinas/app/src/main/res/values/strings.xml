@@ -3,6 +3,8 @@
     <string name="calculate_tip">Calculadora de propinas</string>
     <string name="bill_amount">Precio</string>
     <string name="tip_amount">Propina: %s</string>
+    <string name="how_was_the_service">% de propina</string>
+    <string name="round_up_tip">Redondeo?</string>
 </resources>
 
 
