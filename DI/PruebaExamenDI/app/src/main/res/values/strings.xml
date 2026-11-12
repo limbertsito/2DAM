@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">PruebaExamenDI</string>
+    <string name="habitos_title">Hábitos de Limbert</string>
+    <string name="filter_all">Todas</string>
+    <string name="new_habit_label">Nuevo hábito</string>
+    <string name="add_button">Añadir</string>
+    <string name="progress_text">%1$d de %2$d completados</string>
+    <string name="category_prefix">Categoría: %1$s</string>
+    <string name="delete_habit_desc">Eliminar hábito %1$s</string>
+    <string name="delete_icon_text">X</string>
+    <string name="cat_salud">Salud</string>
+    <string name="cat_estudio">Estudio</string>
+    <string name="cat_hogar">Hogar</string>
+    <string name="cat_ocio">Ocio</string>
+
+    <!-- Hábitos por defecto -->
+    <string name="habito_agua_nombre">Beber 2 L de agua</string>
+    <string name="habito_compose_nombre">Estudiar compose 1 h</string>
+    <string name="habito_compose_desc">Repasar el codelab de estado</string>
+    <string name="habito_cama_nombre">Hacer la cama</string>
+    <string name="habito_pasear_nombre">Pasear 30 min</string>
+</resources>
