@@ -22,7 +22,13 @@ class CajaLock {
 
     // Forma 2: lock.lock() antes de sumar y lock.unlock() dentro de un finally
     fun cobrar(centimos: Int) {
-        totalCentimos += centimos
+        lock.lock()
+        try {
+            totalCentimos += centimos
+
+        }finally {
+            lock.unlock() //en un finally se suelta lo que pase
+        }
     }
 }
 
@@ -31,6 +37,7 @@ class CajaAtomica {
 
     // Forma 3: suma con totalCentimos.addAndGet(centimos)
     fun cobrar(centimos: Int) {
+        totalCentimos.addAndGet(centimos)
     }
 }
 
@@ -49,6 +56,21 @@ fun main() {
 
     // Repite con una CajaLock: "ReentrantLock: … de … en … ms"
 
+    inicio = System.currentTimeMillis()
+    val b = CajaLock()
+    var cajerosB = ArrayList<Thread>()
+    for (i in 1..CAJEROS) cajerosB.add(thread { for (j in 1..COBROS) b.cobrar(1)})
+    for (c in cajerosB) c.join()
+
+    var msB= System.currentTimeMillis() - inicio
+    println("ReentrantLock: ${b.totalCentimos} de $esperado en $msB ms")
     // Repite con una CajaAtomica: "AtomicInteger: … de … en … ms"
     // (el total se lee con totalCentimos.get())
+    inicio = System.currentTimeMillis()
+    val d = CajaAtomica()
+    var cajerosD = ArrayList<Thread>()
+    for (i in 1..CAJEROS) cajerosD.add(thread { for (j in 1..COBROS) d.cobrar(1) })
+    for (c in cajerosD) c.join()
+    var msD = System.currentTimeMillis() - inicio
+    println("AtomicInteger: ${d.totalCentimos.get()} de $esperado en $msD ms")
 }

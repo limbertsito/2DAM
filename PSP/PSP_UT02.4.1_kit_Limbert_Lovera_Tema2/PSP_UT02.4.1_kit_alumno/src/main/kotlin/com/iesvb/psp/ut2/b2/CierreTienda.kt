@@ -5,7 +5,7 @@ import kotlin.concurrent.thread
 
 // CierreTienda.kt · B2.4: el cajero debe ver que la tienda cierra (código de partida)
 class Tienda {
-    var abierta = true
+    @Volatile var abierta = true
 }
 
 fun main() {

@@ -26,16 +26,27 @@ fun main() {
             //      - tarda 10 ms por unidad: Thread.sleep(pedido.unidades * 10L)
             //      - suma sus unidades con unidadesEmpaquetadas.addAndGet(…) y 1 a preparados
             //      - saca el siguiente pedido
+            var pedido = cola.take()
+            while (pedido.id!=FIN.id){
+                Thread.sleep(pedido.unidades*10L)
+                unidadesEmpaquetadas.addAndGet(pedido.unidades) //Delta es lo que se añade
+                preparados ++
+                pedido = cola.take()
+            }
             log("$preparados pedidos preparados")
         })
     }
     val web = thread(name = "web") {
         // 1. Para id de 1 a 30: crea Pedido(id, Random.nextInt(1, 6)), suma sus unidades a
         //    unidadesRecibidas y mételo con cola.put(pedido) (espera si la cola está llena)
+        for (id in 1..30) cola.put(Pedido(id, Random.nextInt(1,6)))
+        for (n in 1..3) cola.put(FIN)
         // 2. Mete una píldora FIN por cada empaquetador (3)
         log("30 pedidos recibidos")
     }
     // Espera a la web y a los tres empaquetadores (join)
+    web.join()
+    for (e in empaquetadores) e.join()
 
     log("unidades recibidas $unidadesRecibidas, empaquetadas ${unidadesEmpaquetadas.get()}")
 }
