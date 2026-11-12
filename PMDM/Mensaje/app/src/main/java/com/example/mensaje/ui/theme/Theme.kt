@@ -4,6 +4,7 @@ import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Typography
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
@@ -54,5 +55,34 @@ fun MensajeTheme(
         colorScheme = colorScheme,
         typography = Typography,
         content = content
+    )
+}
+private val TemaNaranja = lightColorScheme(
+    primary = NaranjaPrincipal,
+    background = NaranjaClaro,
+    surface = Blanco,
+    onPrimary = Blanco,
+    onBackground = TextoOscuro
+)
+private val TemaVerde = lightColorScheme(
+    primary = VerdePrincipal,
+    background = VerdeClaro,
+    surface = Blanco,
+    onPrimary = Blanco,
+    onBackground = TextoOscuro
+)
+@Composable
+fun variosActivityTheme(
+    usarTemaVerde: Boolean  = false,
+    content : @Composable () -> Unit
+) {
+    MaterialTheme(
+        colorScheme = if (usarTemaVerde) {
+            TemaVerde
+        } else {
+            TemaNaranja
+        },
+        typography = Typography(), content = content
+
     )
 }

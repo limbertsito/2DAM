@@ -14,19 +14,27 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.example.mensaje.ui.theme.Blanco
+import com.example.mensaje.ui.theme.EXTRA_MENSAJE
+import com.example.mensaje.ui.theme.MAX_CARACTERES
 import com.example.mensaje.ui.theme.MensajeTheme
+import com.example.mensaje.ui.theme.NaranjaClaro
+import com.example.mensaje.ui.theme.NaranjaPrincipal
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,11 +50,11 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun home1(activity: MainActivity) {
-    var mensaje by remember { mutableStateOf("") }
+    var mensaje by rememberSaveable { mutableStateOf("") }
 
         Column(
             modifier = Modifier
-                .background(Color(0xFFFFA500))
+                .background(NaranjaClaro)
                 .fillMaxSize(),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
@@ -58,7 +66,10 @@ fun home1(activity: MainActivity) {
             TextField(
                 value = mensaje,
                 onValueChange = { newText ->
-                    mensaje = newText
+                    //constante limite de caracteres
+                    if(mensaje.length <= MAX_CARACTERES) {
+                        mensaje = newText
+                    }
                 },
                 label = { Text(stringResource(R.string.mensaje)) },
                 modifier = Modifier.padding(16.dp)
@@ -67,13 +78,14 @@ fun home1(activity: MainActivity) {
                 onClick = {
                 //creamos el intent
                     val intent = Intent(activity, PruebaActivity::class.java)
-                    intent.putExtra("mensaje", mensaje)
+                    //COnstante mensaje
+                    intent.putExtra(EXTRA_MENSAJE, mensaje)
                     activity.startActivity(intent)
                 },
                 enabled = mensaje.isNotBlank(),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF9C7352),
-                    contentColor = Color.White
+                    containerColor = NaranjaPrincipal,
+                    contentColor = Blanco
                 ),
                 modifier = Modifier,
 
@@ -86,3 +98,5 @@ fun home1(activity: MainActivity) {
 
 
 }
+
+
