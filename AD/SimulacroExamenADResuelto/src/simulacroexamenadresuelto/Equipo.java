@@ -4,7 +4,6 @@
  */
 
 package simulacroexamenadresuelto;
-import java.util.Scanner;
 /**
  *
  * @author limbe

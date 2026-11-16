@@ -5,8 +5,10 @@
 package simulacroexamenadresuelto;
 
 import java.io.BufferedReader;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
@@ -14,6 +16,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -37,21 +40,25 @@ import org.w3c.dom.Element;
 public class SimulacroExamenADResuelto {
 
     final static Scanner SC = new Scanner(System.in);
+
+    // Nombres base (en String) de la carpeta y de los distintos formatos de archivo
     final static String DIRECTORIO = "equipos";
     final static String ARCHIVO_BINARIO = "equipos.dat";
     final static String ARCHIVO_XML = "equipos.xml";
 
-    final static File CARPETA_FILE = new File(DIRECTORIO);
-    final static File ARCHIVO_FILE = new File(CARPETA_FILE, ARCHIVO_BINARIO);
+    // Objetos File que representan las rutas físicas reales en disco (combinando carpeta + nombre de archivo)
+    final static File CARPETA_FILE = new File(DIRECTORIO);      // Objetos File que representan las rutas físicas reales en disco (combinando carpeta + nombre de archivo)
+    final static File ARCHIVO_FILE = new File(CARPETA_FILE, ARCHIVO_BINARIO);   // Ruta portable: "equipos/equipos.dat"
 
-    final static File FICHERO_TXT = new File(CARPETA_FILE, "fichero.txt");
-    final static File FICHERO_XML = new File(CARPETA_FILE, ARCHIVO_XML);
+    final static File FICHERO_TXT = new File(CARPETA_FILE, "fichero.txt");  // Ruta portable: "equipos/fichero.txt" (para importar con delimitador)
+    final static File FICHERO_XML = new File(CARPETA_FILE, ARCHIVO_XML);    // Ruta portable: "equipos/equipos.xml" (para exportar con DOM)
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
-
+        
+        //1 .- preparar directorio
         prepararDirectorio();
 
         int opcion = -1;
@@ -119,13 +126,16 @@ public class SimulacroExamenADResuelto {
 
             try {
                 ARCHIVO_FILE.createNewFile();
+                
+                //CREAMOS LOS DATOS POR DEFECTO
                 crearDatosPorDefecto(ARCHIVO_FILE.getPath());
+            
             } catch (IOException ex) {
                 System.err.println("Error E/S : " + ex.getMessage());
             }
         }
     }
-
+    
     /**
      * Metodo para crear los datos por defecto en caso de que estuvbiese vacio
      *
@@ -140,7 +150,8 @@ public class SimulacroExamenADResuelto {
         };
         DataOutputStream dos = null;
         try {
-            dos = new DataOutputStream(new FileOutputStream(ARCHIVO_BINARIO, false));
+
+            dos = new DataOutputStream(new FileOutputStream(ARCHIVO_FILE, false));
             //Esrcibimoos los datos
             for (Equipo e : equiposIniciales) {
                 dos.writeInt(e.getNumEquipo());
@@ -173,14 +184,14 @@ public class SimulacroExamenADResuelto {
         //Declaramso el arrayList para poder leerlo y meterlos dentro
         ArrayList<Equipo> equipos = new ArrayList();
 
-        //Comprobamos que el archivo exista , sino devolvemos la lista vacia
+        //Comprobamos que el archivo exista , sino devolvemos la lista vacia 
         if (!ARCHIVO_FILE.exists()) {
             return equipos;
         }
         DataInputStream dis = null;
 
         try {
-            dis = new DataInputStream(new FileInputStream(ARCHIVO_BINARIO));
+            dis = new DataInputStream(new FileInputStream(ARCHIVO_FILE));
 
             //Leemos mediante un bucle infinito hasta el final del fichero
             while (true) {
@@ -200,6 +211,17 @@ public class SimulacroExamenADResuelto {
             System.out.println("Fin del archivo.");
         } catch (IOException ex) {
             System.out.println("Error de E/S : " + ex.getMessage());
+        }
+        finally {
+            try {
+                if(dis!=null){
+                    dis.close();
+                }
+
+            } catch (IOException e) {
+                System.err.println("Error al cerrar el fichero "+e.getMessage());
+            }
+
         }
         // DEVOLVEMOS LA LISTA CON TODOS LOS OBJETOS RECUPERADOS
         return equipos;
@@ -245,9 +267,9 @@ public class SimulacroExamenADResuelto {
         DataOutputStream dos = null;
 
         try {
-            dos = new DataOutputStream(new FileOutputStream(ARCHIVO_BINARIO, true));
+            dos = new DataOutputStream(new FileOutputStream(ARCHIVO_FILE, true));
             //Escribimos para insertar el nuevo equipo
-            dos.write(num);
+            dos.writeInt(num);
             dos.writeUTF(tipo);
             dos.writeUTF(marca);
             dos.writeUTF(aula);
