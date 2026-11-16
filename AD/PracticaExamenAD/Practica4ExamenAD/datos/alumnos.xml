@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<alumnos>
+    <alumno id="1">
+        <nombre>Ana</nombre>
+        <apellidos>García López</apellidos>
+        <ciclo>DAM</ciclo>
+        <curso>2</curso>
+        <notaMedia>8.5</notaMedia>
+    </alumno>
+    <alumno id="2">
+        <nombre>Pedro</nombre>
+        <apellidos>gomez Perez</apellidos>
+        <ciclo>DAM</ciclo>
+        <curso>1</curso>
+        <notaMedia>7.5</notaMedia>
+    </alumno>
+</alumnos>
