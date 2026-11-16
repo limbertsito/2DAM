@@ -43,12 +43,12 @@ public class SimulacroExamenADResuelto {
 
     // Nombres base (en String) de la carpeta y de los distintos formatos de archivo
     final static String DIRECTORIO = "equipos";
-    final static String ARCHIVO_BINARIO = "equipos.dat";
+    final static String DAT = "equipos.dat";
     final static String ARCHIVO_XML = "equipos.xml";
 
     // Objetos File que representan las rutas físicas reales en disco (combinando carpeta + nombre de archivo)
     final static File CARPETA_FILE = new File(DIRECTORIO);      // Objetos File que representan las rutas físicas reales en disco (combinando carpeta + nombre de archivo)
-    final static File ARCHIVO_FILE = new File(CARPETA_FILE, ARCHIVO_BINARIO);   // Ruta portable: "equipos/equipos.dat"
+    final static File ARCHIVO_BINARIO = new File(CARPETA_FILE, DAT);   // Ruta portable: "equipos/equipos.dat"
 
     final static File FICHERO_TXT = new File(CARPETA_FILE, "fichero.txt");  // Ruta portable: "equipos/fichero.txt" (para importar con delimitador)
     final static File FICHERO_XML = new File(CARPETA_FILE, ARCHIVO_XML);    // Ruta portable: "equipos/equipos.xml" (para exportar con DOM)
@@ -122,13 +122,13 @@ public class SimulacroExamenADResuelto {
         }
 
         // 2. Comprobar si existe el fichero binario o está vacío
-        if (!ARCHIVO_FILE.exists() || ARCHIVO_FILE.length() == 0) {
+        if (!ARCHIVO_BINARIO.exists() || ARCHIVO_BINARIO.length() == 0) {
 
             try {
-                ARCHIVO_FILE.createNewFile();
+                ARCHIVO_BINARIO.createNewFile();
                 
                 //CREAMOS LOS DATOS POR DEFECTO
-                crearDatosPorDefecto(ARCHIVO_FILE.getPath());
+                crearDatosPorDefecto(ARCHIVO_BINARIO.getPath());
             
             } catch (IOException ex) {
                 System.err.println("Error E/S : " + ex.getMessage());
@@ -151,7 +151,7 @@ public class SimulacroExamenADResuelto {
         DataOutputStream dos = null;
         try {
 
-            dos = new DataOutputStream(new FileOutputStream(ARCHIVO_FILE, false));
+            dos = new DataOutputStream(new FileOutputStream(ARCHIVO_BINARIO, false));
             //Esrcibimoos los datos
             for (Equipo e : equiposIniciales) {
                 dos.writeInt(e.getNumEquipo());
@@ -184,14 +184,14 @@ public class SimulacroExamenADResuelto {
         //Declaramso el arrayList para poder leerlo y meterlos dentro
         ArrayList<Equipo> equipos = new ArrayList();
 
-        //Comprobamos que el archivo exista , sino devolvemos la lista vacia 
-        if (!ARCHIVO_FILE.exists()) {
+        //Comprobamos que el archivo exista sino devolvemos la lista vacia
+        if (!ARCHIVO_BINARIO.exists()) {
             return equipos;
         }
         DataInputStream dis = null;
 
         try {
-            dis = new DataInputStream(new FileInputStream(ARCHIVO_FILE));
+            dis = new DataInputStream(new FileInputStream(ARCHIVO_BINARIO));
 
             //Leemos mediante un bucle infinito hasta el final del fichero
             while (true) {
@@ -267,7 +267,7 @@ public class SimulacroExamenADResuelto {
         DataOutputStream dos = null;
 
         try {
-            dos = new DataOutputStream(new FileOutputStream(ARCHIVO_FILE, true));
+            dos = new DataOutputStream(new FileOutputStream(ARCHIVO_BINARIO, true));
             //Escribimos para insertar el nuevo equipo
             dos.writeInt(num);
             dos.writeUTF(tipo);
@@ -341,7 +341,7 @@ public class SimulacroExamenADResuelto {
     private static void sobrescribirDAT(ArrayList<Equipo> lista) {
         DataOutputStream dos = null;
         try {
-            dos = new DataOutputStream(new FileOutputStream(ARCHIVO_FILE, false));
+            dos = new DataOutputStream(new FileOutputStream(ARCHIVO_BINARIO, false));
             for (Equipo equipo : lista) {
                 dos.writeInt(equipo.getNumEquipo());
                 dos.writeUTF(equipo.getTipo());
