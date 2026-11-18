@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">PracticaExamenJetpackDADOS</string>
+    <string name="lanzar">Lanzar</string>
+    <string name="imagen_dado_1">Imagen dado 1</string>
+</resources>
