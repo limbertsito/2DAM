@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">PracticaExamenLimonero</string>
+    <string name="pulsa_para_obtener_limones">Pulsa para obtener limones</string>
+    <string name="pulsa_x_veces_para_exprimir">pulsa X veces para exprimir</string>
+    <string name="pulsa_para_beber_la_limonada">Pulsa para beber la limonada</string>
+    <string name="pulsa_para_volver_a_inciiar">Pulsa para volver a inciiar</string>
+</resources>
