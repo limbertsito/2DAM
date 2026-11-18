@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">PracticaExamenJetpackPROPINAS</string>
+    <string name="calculadora_de_propina">Calculadora de propina</string>
+    <string name="cantidad_dinero">Cantidad dinero</string>
+    <string name="de_propina">% de propina</string>
+    <string name="propina">"Propina: $ "</string>
+    <string name="propina1">propina : $ %1$s</string>
+    <string name="redondeo">Redondeo?</string>
+</resources>

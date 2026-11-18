@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">PracticaExamenJetpack_ACTIVITY</string>
+    <string name="enviar_mensaje">Enviar Mensaje</string>
+    <string name="mensaje">Mensaje</string>
+    <string name="enviar">Enviar</string>
+    <string name="mensaje_recibido">"Mensaje Recibido: "</string>
+    <string name="volver">Volver</string>
+    <string name="actividad_1">Actividad 1</string>
+    <string name="actividad_2">Actividad 2</string>
+</resources>
