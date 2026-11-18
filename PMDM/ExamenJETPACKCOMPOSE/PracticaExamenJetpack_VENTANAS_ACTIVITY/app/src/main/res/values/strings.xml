@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">PracticaExamenJetpack_VENTANAS_ACTIVITY</string>
+    <string name="Usuario">Usuario</string>
+    <string name="contrase_a">Contraseña :</string>
+    <string name="es_admin">Es admin?</string>
+    <string name="validar">Validar</string>
+    <string name="sselecciona_una_ciudad">Sselecciona una ciudad</string>
+    <string-array name="listaCiudades">
+        <item>Salamanca</item>
+        <item>Ávila</item>
+        <item>Zamora</item>
+        <item>Gijón</item>
+        <item>Valencia</item>
+        <item>Madrid</item>
+        <item>Lisboa</item>
+        <item>Sevilla</item>
+    </string-array>
+</resources>
