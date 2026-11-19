@@ -1,32 +1,42 @@
-package com.iesvb.psp.ut2.b1
+package com.iesvb.psp.ut2.s5
 
 import com.iesvb.psp.ut2.log
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import kotlin.random.Random
 
 // Repartidores.kt · B1.1: tres repartidores entregan a la vez y main espera a todos
 // (código de partida: completa lo que indican los comentarios)
-class Repartidor(val entregas: Int) : Runnable {
-    var hechas = 0                  // entregas que lleva este repartidor
-
-    override fun run() {
-        // Repite tantas veces como entregas tenga el repartidor:
-        //   1. Simula lo que tarda la entrega: Thread.sleep(Random.nextLong(50, 150))
-        //      (da de 50 a 149 ms: el segundo valor no se incluye)
-        //   2. Suma 1 a hechas
-        //   3. Anótala con log: "entrega 1 de 4", "entrega 2 de 4"…
+class Repartidor(val entregas: Int) {
+    var hechas = 0 // entregas que lleva este repartidor
+    suspend fun repartir(nombre: String) {
+        for (i in 1..entregas) {
+            delay(Random.nextLong(50, 150))
+            hechas++
+            log("$nombre: entrega $i de $entregas")
+        }
     }
 }
-
 fun main() {
-    // Crea dos listas: una de repartidores, ArrayList<Repartidor>(),
-    // y otra de hilos, ArrayList<Thread>()
+    val repartidores = ArrayList<Repartidor>()
 
-    // Repite 3 veces (n = 1, 2, 3):
-    //   1. Crea un Repartidor con 4 entregas y añádelo a la lista de repartidores
-    //   2. Crea su hilo con el nombre "repartidor-n" y añádelo a la lista de hilos
-    //   3. Arranca el hilo
-
-    // Espera a que terminen todos los hilos (join)
+    runBlocking {
+        for (n in 1..3) {
+            // 1. Crea un Repartidor con 4 entregas y añádelo a la lista de repartidores
+            val repartidor = Repartidor(4)
+            repartidores.add(repartidor)
+            // 2. Creo una corrutina con el nombre "repartidor-n" y la lanzo
+            launch { repartidor.repartir("repartidor-$n") }
+        }
+    }
 
     // Suma las entregas hechas por cada repartidor y escribe el total con log
+    var totalEntregas = 0
+    for (r in repartidores){
+        totalEntregas += r.hechas
+    }
+
+    log("reparto terminado: ${repartidores.size}, $totalEntregas entregas")
 }
+ 

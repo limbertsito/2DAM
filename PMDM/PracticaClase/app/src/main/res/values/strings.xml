@@ -9,4 +9,15 @@
     <string name="ciudads">"Ciudad "</string>
     <string name="ciudades">"Ciudad: "</string>
     <string name="contraseña">"Contraseña : "</string>
+
+    <array name="lista_ciudades">
+        <item>Salamanca</item>
+        <item>Ávila</item>
+        <item>Zamora</item>
+        <item>Gijón</item>
+        <item>Valencia</item>
+        <item>Madrid</item>
+        <item>Lisboa</item>
+        <item>Sevilla</item>
+    </array>
 </resources>

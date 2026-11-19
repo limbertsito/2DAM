@@ -150,7 +150,7 @@ public class SimulacroExamenADResuelto {
         };
         DataOutputStream dos = null;
         try {
-
+            
             dos = new DataOutputStream(new FileOutputStream(ARCHIVO_BINARIO, false));
             //Esrcibimoos los datos
             for (Equipo e : equiposIniciales) {
