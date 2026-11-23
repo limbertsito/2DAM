@@ -24,6 +24,7 @@ match parametros:
         case(int(numero_hijos),int(año_nacimiento)):
                 flag = True
 
+
 if(flag):
         numero_hijos= int(numero_hijos)
         año_nacimiento= int(año_nacimiento)

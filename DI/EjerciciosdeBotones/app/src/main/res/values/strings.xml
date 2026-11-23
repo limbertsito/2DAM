@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Ejercicios de Botones</string>
+    <string name="no_disponible">NO DISPONIBLE</string>
+    <string name="borrar">BORRAR</string>
+    <string name="cancelar">CANCELAR</string>
+    <string name="guardar_cambios">GUARDAR CAMBIOS</string>
+    <string name="editar_perfil">EDITAR PERFIL</string>
+    <string name="mi_perfil">MI PERFIL</string>
+</resources>
