@@ -13,15 +13,16 @@ import java.sql.*;
 public class GestorTorneo {
 
     //Métopdo auxiliar para central para ejecutar cualquier sentencia DDL (CREATE,ALTER,DROP)
-    public void ejecutar(String sql) throws SQLException {
+      public void ejecutar(String sql) throws SQLException {
 
         ConexionBBDD bd = new ConexionBBDD();
 
-        try (Connection con = bd.conectar(); PreparedStatement ps = con.prepareStatement(sql);) {
+        try (Connection con = bd.conectar();
+            PreparedStatement ps = con.prepareStatement(sql);) {
             ps.executeUpdate();// Ejecuta la sentencia DDL en MySQL
         }
     }
-
+    
     public void crearBaseDatos() throws SQLException {
         //1 .- Creamso la basse de dats en mySQL solo sin no existe
 
@@ -42,7 +43,7 @@ public class GestorTorneo {
                 + "ciudad VARCHAR(40) NOT NULL DEFAULT 'Salamanca', "
                 + "fecha_creacion DATE "
                 + " )";
-        //LE pasamos la setencia a nuestro metodo auxiliar
+        //LE pasamos la setencia a nuestro metodo auxiliar SOLO LLAMAMOS  AEJECUTAR NO SET CATALOG
         ejecutar(sql);
     }
 
@@ -73,6 +74,8 @@ public class GestorTorneo {
                 + "VALUES (?, ?, ?, ?)";
 
         try (Connection con = bd.conectar()) {
+            
+            //SET CATALOG NOS ASEGURAMOS DE TRABAJAR CON LA BASE DE DATPS
             con.setCatalog("torneo"); // nos aseguramos de trabajr con torneo BBDD
 
             //Insertamos el equipo 1 
@@ -99,7 +102,7 @@ public class GestorTorneo {
                 ps.setInt(1, 3);
                 ps.setString(2, "Halcones Charros");
                 ps.setNull(3, java.sql.Types.DATE); // Pasamos NULL en campos de tipo fecha
-
+                
                 filasInsertadas += ps.executeUpdate();
             }
         }
@@ -118,6 +121,8 @@ public class GestorTorneo {
                 + "VALUES (?,?,?,?,?) ";
         int filasInsertadas = 0; //contador de filas
         try (Connection con = bd.conectar()) {
+            
+            
             con.setCatalog("torneo");  //CONFIRMAMOS QUE TRBAJAMOS CON TORNEO
             try (PreparedStatement ps = con.prepareStatement(sqlCompleto)) {
                 ps.setString(1, "sombra");

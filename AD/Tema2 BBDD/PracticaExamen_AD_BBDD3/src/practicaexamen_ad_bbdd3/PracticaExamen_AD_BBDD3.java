@@ -4,6 +4,10 @@
  */
 package practicaexamen_ad_bbdd3;
 
+import controlador.ControladorTorneo;
+import modelo.GestorTorneo;
+import vista.VistaTorneo;
+
 /**
  *
  * @author limbe
@@ -15,6 +19,10 @@ public class PracticaExamen_AD_BBDD3 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        VistaTorneo vista = new VistaTorneo();
+        GestorTorneo gestor = new GestorTorneo();
+        ControladorTorneo controlador = new ControladorTorneo(gestor, vista);
+        controlador.iniciar();
     }
     
 }

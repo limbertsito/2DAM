@@ -64,7 +64,7 @@ public class ControladorTorneo {
                         }
                     }
 
-                    case 6 -> {
+                    case 0 -> {
                         vista.mostrarMensaje("Saliendo...");
                     }
                     default -> {
