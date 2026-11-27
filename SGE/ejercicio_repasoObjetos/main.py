@@ -39,8 +39,19 @@ class arbol (vegetal):
        nombre_fichero = self.nombre + ".txt"
        fichero = open(nombre_fichero, "a")
        fichero.write("-"+str(self.caduca))
-       fichero.close()
+       fichero.close() #Cerramos el fichero
+
+    def __eq__(self, other):
+        return self.caduca == other.caduca
 
 a1=arbol("nogal","arbol",False,"angiosperma",True)
+a2=arbol("naranjo","arbol",False,"angiosperma",False)
+
 a1.setVegetal()
 a1.getVegetal()
+
+if(a1.__eq__(a2)):
+    print("SOn iguales ambos caduda")
+else:
+    print("No son iguales")
+#Si usamos la logica de la funcion magica se implementa en este caso seria a1 == a2
