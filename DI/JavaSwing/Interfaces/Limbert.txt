@@ -1,0 +1,11 @@
+=== FICHA DE MATRÍCULA ===
+Nombre: Limbert
+Apellidos: Lovera Cuba
+NIF: 70971176F
+Fecha de nacimiento: 28/11/2026
+Dirección: Profesor
+Teléfono: 6030303
+Email: Linbertr@gmail.com
+Ciclo: Sistemas Microinformáticos y Redes (SMR)
+Turno: Matutino
+Actividades extraescolares: Ajedrez, Fútbol sala
